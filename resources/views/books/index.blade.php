@@ -15,6 +15,7 @@
                     <th>Tahun Terbit</th>
                     <th>ISBN</th>
                     <th>Kategori</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
@@ -29,6 +30,11 @@
                         <td>{{ $book->isbn }}</td>
                         <td>{{ $book->kategori }}</td>
                     </tr>
+                    <td>
+                        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+                    </td>
                 @empty
                     <tr>
                         <td colspan="7" class="text-center">

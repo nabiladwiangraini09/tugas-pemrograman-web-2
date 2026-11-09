@@ -18,20 +18,42 @@ class BookController extends Controller
     {
         return view('books.create');
     }
+
     public function store(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required|integer',
+            'isbn' => 'required|unique:books,isbn',
+            'kategori' => 'required',
+        ]);
+
+        Book::create($request->all());
+
+        return redirect()->route('books.index')
+            ->with('success', 'Buku berhasil ditambahkan!');
+    }
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+    public function update(Request $request, Book $book)
 {
     $request->validate([
         'judul' => 'required',
         'penulis' => 'required',
         'penerbit' => 'required',
         'tahun_terbit' => 'required|integer',
-        'isbn' => 'required|unique:books,isbn',
+        'isbn' => 'required|unique:books,isbn,' . $book->id,
         'kategori' => 'required',
     ]);
 
-    Book::create($request->all());
+    $book->update($request->all());
 
     return redirect()->route('books.index')
-        ->with('success', 'Buku berhasil ditambahkan!');
+        ->with('success', 'Buku berhasil diperbarui!');
 }
 }
