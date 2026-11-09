@@ -21,3 +21,6 @@ Route::get('/books/{book}/edit', [BookController::class, 'edit'])
 
 Route::put('/books/{book}', [BookController::class, 'update'])
     ->name('books.update');
+
+Route::delete('/books/{book}', [BookController::class, 'destroy'])
+    ->name('books.destroy');

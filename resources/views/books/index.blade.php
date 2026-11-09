@@ -30,10 +30,27 @@
                         <td>{{ $book->isbn }}</td>
                         <td>{{ $book->kategori }}</td>
                     </tr>
+
                     <td>
-                        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">
-                            Edit
-                        </a>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="margin: 0;">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin ingin menghapus buku ini?')">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+
+
+                    </a>
                     </td>
                 @empty
                     <tr>
