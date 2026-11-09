@@ -1,6 +1,9 @@
 <x-app>
     <div class="container mt-5">
         <h1 class="mb-4">Daftar Buku Perpustakaan</h1>
+        <a href="{{ route('books.create') }}" class="btn btn-primary mb-3">
+            + Tambah Buku
+        </a>
 
         <table class="table table-bordered table-striped">
             <thead class="table-primary">
